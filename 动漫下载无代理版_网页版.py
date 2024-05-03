@@ -25,7 +25,7 @@ if details:
     all = int(round(float(details[0][1])))
     detail_1 = int(details[0][0])
 
-start = st.text_input(f'一共{all}集,请问你要下载的为：')#.split()
+start = st.number_input(f'一共{all}集,请问你要下载的为：')#.split()
 start = int(start)
 end = int(start)
 
