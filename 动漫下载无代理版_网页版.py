@@ -25,9 +25,9 @@ if details:
     all = int(round(float(details[0][1])))
     detail_1 = int(details[0][0])
 
-start, end = st.text_input(f'一共{all}集,请问你要下载的范围为(请输入两个整数，用空格分隔):').split()
+start = st.text_input(f'一共{all}集,请问你要下载的为：')#.split()
 start = int(start)
-end = int(end)
+end = int(start)
 
 Save_path = f'动漫/{donghua_name}'
 exists(Save_path) or makedirs(Save_path)
@@ -131,14 +131,15 @@ for i in trange(start, end + 1):
     xia_zai(i)
 
 # 加载视频
-video_path = f'{Save_path}/第{1}集.mp4'
+video_path = f'{Save_path}/第{start}集.mp4'
 
 # 在Streamlit中显示视频
 st.video(video_path)
 
 down_btn = st.download_button(
     label="Download Video",
-    data=open(f'{Save_path}/第{1}集.mp4', "rb"),
-    file_name=f"第{1}集",
+    data=open(f'{Save_path}/第{start}集.mp4', "rb"),
+    file_name=f"第{start}集",
     mime="video/mp4"
 )
+
