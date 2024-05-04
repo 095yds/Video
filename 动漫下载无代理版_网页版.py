@@ -15,7 +15,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from tqdm import trange
 
 
-donghua_name = st.text_input('请输入你要下载的动漫的名字:')
+donghua_name = st.number_input('请输入你要下载的动漫的名字:')
 url = f'https://www.agedm.org/search?query={donghua_name}'
 resp = requests.get(url)
 details = re.findall(r'"http://www.agedm.org/detail/(.*?)".*?>第(.*?)集', resp.text, re.S)
