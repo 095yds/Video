@@ -1,3 +1,4 @@
+import os
 import re
 import time
 from os import makedirs
@@ -15,6 +16,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from tqdm import trange
 
 
+@st.experimental_singleton
+def installff():
+    os.system('sbase install geckodriver')
+    os.system(
+        'ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
+
+
+_ = installff()
+
 donghua_name = st.text_input('请输入你要下载的动漫的名字:')
 url = f'https://www.agedm.org/search?query={donghua_name}'
 resp = requests.get(url)
@@ -26,7 +36,7 @@ if details:
     all = int(round(float(details[0][1])))
     detail_1 = int(details[0][0])
 
-start = st.number_input(f'一共{all}集,请问你要下载的为：')#.split()
+start = st.number_input(f'一共{all}集,请问你要下载的为：')  # .split()
 start = int(start)
 end = int(start)
 
