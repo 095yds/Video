@@ -8,11 +8,12 @@ import requests
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains  # 行为链
-from selenium.webdriver import EdgeOptions
+from selenium.webdriver import FirefoxOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from tqdm import trange
+
 
 donghua_name = st.text_input('请输入你要下载的动漫的名字:')
 url = f'https://www.agedm.org/search?query={donghua_name}'
@@ -25,7 +26,7 @@ if details:
     all = int(round(float(details[0][1])))
     detail_1 = int(details[0][0])
 
-start = st.number_input(f'一共{all}集,请问你要下载的为：')#.split()
+start = st.text_input(f'一共{all}集,请问你要下载的为：')#.split()
 start = int(start)
 end = int(start)
 
@@ -77,9 +78,9 @@ def xia_zai(num):
         print(f"正则表达式异常：{e}")
 
     # 无头模式
-    option = EdgeOptions()
+    option = FirefoxOptions()
     option.add_argument('--headless')  # 无头模式
-    browser = webdriver.Edge(options=option)
+    browser = webdriver.Firefox(options=option)
     browser.set_window_size(1366, 768)
 
     if len(url) == 1:  # 判断url是否为空集
@@ -142,4 +143,3 @@ down_btn = st.download_button(
     file_name=f"第{start}集",
     mime="video/mp4"
 )
-
