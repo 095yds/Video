@@ -2,10 +2,15 @@ import streamlit as st
 
 option = st.selectbox(
     "请选择你想要复习的学科",
-    ("水力学公式", "理论力学公式", "自动控制原理"))
+    ("水力学公式", "理论力学公式", "自动控制原理", "传热学"))
 
 if option == "水力学公式":
     with open('水力学公式.md') as f:
+        data = f.read()
+        st.markdown(f'{data}')
+        f.close()
+elif option == "传热学":
+    with open('传热学.md') as f:
         data = f.read()
         st.markdown(f'{data}')
         f.close()
